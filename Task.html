@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Planner</title>
+    <link rel="stylesheet" href="wave.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #d4800c, #e30606); 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+    }
+
+    .grid-container {
+        display: inline;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto); 
+        gap: 3rem; 
+        justify-items: center; 
+        align-items: center; 
+        width: 90%; 
+        max-width: 800px; 
+        padding: 30px;
+        background: white;
+        border-radius: 20px; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+        
+    }
+
+    .grid-item {
+        background: linear-gradient(rgb(253, 180, 43), palegoldenrod); 
+        padding: 2rem;
+        border-radius: 15px; 
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    }
+
+    h1, h2 {
+        font-weight: 600;
+        color: #333;
+    }
+
+    p {
+        color: #555;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px; 
+        border: 1px solid #ddd;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: antiquewhite;
+    }
+
+    input:focus, textarea:focus, button:focus {
+        border-color: #feb47b;
+        outline: none;
+    }
+
+    textarea {
+        height: 120px; 
+        resize: vertical; 
+        background-color: antiquewhite;
+    }
+
+    button {
+        background-color: green;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+
+    button:hover {
+        background-color: rgb(182, 137, 53); 
+    }
+
+
+
+    .center-text {
+        text-align: center;
+    }
+
+    @media screen and (max-width: 600px) {
+        .grid-container {
+            padding: 15px;
+            gap: 2rem;
+        }
+
+        .grid-item {
+            padding: 1rem;
+        }
+    }
+</style>
+<body>
+    <div class="grid-container">
+       
+
+        <div class="grid-item">
+            <h1 class="center-text">Day Planner</h1>
+            <p class="center-text">Plan your day effectively.</p>
+            <section class="add-task">
+                
+                <h2>Add a Task</h2>
+                <form id="task-form">
+                    <input type="text" id="task-title" placeholder="Task title" required>
+                    <textarea id="task-description" placeholder="Task description" required></textarea>
+                    <input type="date" id="task-date" required>
+                    
+                </form>
+                
+            </section>
+        </div>
+        <button type="submit">Add Task</button>
+
+        <div class="grid-item">
+            <h2 class="center-text">Today's Tasks</h2>
+            <ul id="task-list">
+                <!-- Tasks will appear here -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
