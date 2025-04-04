@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - My E-Commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #232f3e;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .checkout-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .checkout-summary {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .checkout-summary p {
+            margin: 5px 0;
+        }
+
+        .place-order {
+            background-color: #ff9900;
+            color: white;
+            padding: 15px;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .place-order:hover {
+            background-color: #e68a00;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Checkout</h1>
+</header>
+
+<div class="checkout-container">
+    <h2>Review Your Cart</h2>
+    <div id="cart-items"></div>
+
+    <div class="checkout-summary">
+        <p>Subtotal: $<span id="subtotal">0.00</span></p>
+        <p>Tax: $<span id="tax">0.00</span></p>
+        <p><strong>Total: $<span id="total">0.00</span></strong
