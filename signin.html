@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In / Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Auth Section -->
+    <section id="auth-section">
+        <div class="tabs">
+            <button id="sign-in-tab" onclick="showSignIn()">Sign In</button>
+            <button id="sign-up-tab" onclick="showSignUp()">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="sign-in-form" class="auth-form">
+            <h2>Sign In</h2>
+            <form id="sign-in">
+                <label for="sign-in-email">Email:</label>
+                <input type="email" id="sign-in-email" required>
+
+                <label for="sign-in-password">Password:</label>
+                <input type="password" id="sign-in-password" required>
+
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="sign-up-form" class="auth-form" style="display:none;">
+            <h2>Create an Account</h2>
+            <form id="sign-up">
+                <label for="sign-up-email">Email:</label>
+                <input type="email" id="sign-up-email" required>
+
+                <label for="sign-up-password">Password:</label>
+                <input type="password" id="sign-up-password" required>
+
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </section>
+
+    
+
+
+
+    <script>
+        function showSignIn() {
+            document.getElementById('sign-in-form').style.display = 'block';
+            document.getElementById('sign-up-form').style.display = 'none';
+            document.getElementById('sign-in-tab').classList.add('active');
+            document.getElementById('sign-up-tab').classList.remove('active');
+
+
+        }
+            
+            function showSignUp() {
+                document.getElementById('sign-in-form').style.display = 'none';
+                document.getElementById('sign-up-form').style.display = 'block';
+                document.getElementById('sign-up-tab').classList.add('active');
+                document.getElementById('sign-in-tab').classList.remove('active');
+
+            }
+                
+            showSignIn();
+            
+            document.getElementById('sign-up').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('sign-up-email').value;
+                const password = document.getElementById('sign-up-password').value;
+
+                localStorage.setItem(email, password);
+
+                alert("Account created successfully! Please sign in.");
+
+                showSignIn();
+            });
+
+            document.getElementById('sign-in').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('sign-in-email').value;
+                const password = document.getElementById('sign-in-password').value;
+
+                const storedPassword = localStorage.getItem(email);
+
+                if (storedPassword === password) {
+                    localStorage.setItem("loggedIn", "true");
+
+                    window.location.href = "Task1.html";
+
+                    } else {
+                        alert("Invalid credentials! Please try again.");
+                        }
+                });
+
+    </script>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://st.depositphotos.com/1001877/3814/i/450/depositphotos_38143799-stock-photo-e-commerce-shopping-cart-with.jpg");
+            background-size: cover;
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-attachment: fixed;  
+            min-height: 100vh;       
+            display: flex;
+            justify-content: center;     
+            align-items: center;         
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        
+        #auth-section {
+            background-color: rgba(255, 250, 250, 0.9); /* Light translucent background */
+            padding: 20px;
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+        }
+        
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #auth-section {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: sandybrown;
+            width: 300px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            padding: 10px;
+            width: 100px;
+            border: none;
+            background-color: white;
+            border-style: double;
+            color: black;
+            cursor: pointer;
+        }
+
+        .tabs button.active {
+            background-color: yellow;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .auth-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .auth-form button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+        
+
+
+    </style>
+</body>
+
+</html>
