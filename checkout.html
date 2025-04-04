@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        header, footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .checkout-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 30px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+
+        h2 {
+            color: #ffcc00;
+        }
+
+        .order-summary, .customer-info {
+            margin-bottom: 20px;
+        }
+
+        .order-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .order-summary li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: right;
+            margin: 15px 0;
+        }
+
+        .customer-info input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .place-order {
+            background: #ffcc00;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+            font-size: 1em;
+        }
+
+        .place-order:hover {
+            background: #e5b800;
+        }
+
+        @media (max-width: 600px) {
+            .checkout-container {
+                margin: 15px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Store - Checkout</h1>
+</header>
+
+<div class="checkout-container">
+    <div class="customer-info">
+        <h2>Customer Information</h2>
+        <input type="text" id="customer-name" placeholder="Full Name" required>
+        <input type="email" id="customer-email" placeholder="Email Address" required>
+        <input type="text" id="customer-address" placeholder="Shipping Address" required>
+    </div>
+
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+        <ul id="checkout-items"></ul>
+        <p class="total-price">Total: $<span id="checkout-total">0.00</span></p>
+    </div>
+
+    <button class="place-order" onclick="placeOrder()">Place Order</button>
+</div>
+
+<footer>
+    <p>&copy; 2025 My E-Commerce Store</p>
+</footer>
+
+<script>
+    function loadCheckout() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+
+        const checkoutItems = document.getElementById('checkout-items');
+        const checkoutTotal = document.getElementById('checkout-total');
+
+        cart.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.innerText = `${item.productName} - $${item.price.toFixed(2)}`;
+            checkoutItems.appendChild(listItem);
+        });
+
+        checkoutTotal.innerText = totalPrice.toFixed(2);
+    }
+
+    function placeOrder() {
+        const name = document.getElementById('customer-name').value.trim();
+        const email = document.getElementById('customer-email').value.trim();
+        const address = document.getElementById('customer-address').value.trim();
+
+        if (!name || !email || !address) {
+            alert('Please fill in all customer details.');
+            return;
+        }
+
+        alert(`Thank you for your order, ${name}! Your purchase has been confirmed.`);
+        localStorage.removeItem('cart');
+        localStorage.removeItem('totalPrice');
+        window.location.href = 'index.html'; // Redirect to homepage after order
+    }
+
+    loadCheckout();
+</script>
+
+</body>
+</html>
